@@ -1,1 +1,62 @@
 @import "tailwindcss";
+
+@theme {
+  /* Font */
+  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+
+  /* Lime */
+  --color-lime: #D8DB2F;
+
+  /* Slate */
+  --color-slate-900: #133041;
+  --color-slate-700: #4E6E7E;
+  --color-slate-500: #6B94A8;
+  --color-slate-300: #9ABED5;
+  --color-slate-100: #E4F4FD;
+
+  /* White */
+  --color-white: #FFFFFF;
+
+  /* Red */
+  --color-red: #D73328;
+}
+
+@utility text-preset-1 {
+  font-family: var(--font-jakarta);
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 125%;
+  letter-spacing: -1px;
+}
+
+@utility text-preset-2 {
+  font-family: var(--font-jakarta);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 125%;
+  letter-spacing: -1px;
+}
+
+@utility text-preset-3 {
+  font-family: var(--font-jakarta);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 125%;
+  letter-spacing: -1px;
+}
+
+@utility text-preset-4 {
+  font-family: var(--font-jakarta);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0px;
+}
+
+@utility text-preset-5 {
+  font-family: var(--font-jakarta);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0px;
+}
