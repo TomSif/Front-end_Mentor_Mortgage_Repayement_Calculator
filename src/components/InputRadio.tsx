@@ -1,12 +1,25 @@
+import { cn } from "../lib/cn";
+
 interface InputRadioProps {
   label: string;
   value: "repayment" | "interestOnly";
+  isSelected: boolean;
   onChange: (value: "repayment" | "interestOnly") => void;
 }
 
-const InputRadio = ({ label, value, onChange }: InputRadioProps) => {
+const InputRadio = ({
+  label,
+  value,
+  onChange,
+  isSelected,
+}: InputRadioProps) => {
   return (
-    <label className="flex items-center gap-4 px-3 py-3 border border-slate-500 rounded-sm cursor-pointer hover:border-lime transition">
+    <label
+      className={cn(
+        "flex items-center gap-4 px-3 py-3 border border-slate-500 rounded-sm cursor-pointer hover:border-lime transition",
+        isSelected && "bg-lime/15",
+      )}
+    >
       <input
         className="peer sr-only"
         type="radio"
