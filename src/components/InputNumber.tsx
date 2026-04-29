@@ -38,7 +38,7 @@ const InputNumber = ({
         </span>
         <input
           className="border-none outline-none bg-transparent text-preset-3 text-slate-900 pl-4"
-          type="number"
+          type="text"
           name={unity}
           id={unity}
           min={1}
