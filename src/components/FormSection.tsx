@@ -1,28 +1,32 @@
-import { useState } from "react";
 import type { Inputs, Errors } from "../types";
 import InputNumber from "./InputNumber";
 import InputRadio from "./InputRadio";
 
-const FormSection = () => {
-  const [inputs, setInputs] = useState<Inputs>({
-    loanAmount: "",
-    duration: "",
-    interestRate: "",
-    loanType: "",
-  });
-  const [errors, setErrors] = useState<Errors>({
-    loanAmount: false,
-    duration: false,
-    interestRate: false,
-    loanType: false,
-  });
+interface FormSectionProps {
+  inputs: Inputs;
+  errors: Errors;
+  onChange: (field: keyof Inputs, value: string) => void;
+  onSubmit: () => void;
+}
+const FormSection = ({
+  inputs,
+  errors,
+  onChange,
+  onSubmit,
+}: FormSectionProps) => {
   return (
     <section className="w-full py-8 px-6 flex flex-col gap-6">
       <div className="flex flex-col gap-2 justify-start items-start text-left">
         <h1 className="text-preset-2 text-slate-900">Mortgage Calculator</h1>
         <button className="text-preset-4 text-slate-700">Clear All</button>
       </div>
-      <form className="w-full flex flex-col gap-6" action="">
+      <form
+        className="w-full flex flex-col gap-6"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit();
+        }}
+      >
         <fieldset className="flex flex-col gap-6 w-full">
           <legend className="sr-only">Loan details</legend>
           <InputNumber
@@ -31,12 +35,7 @@ const FormSection = () => {
             isRight={true}
             isError={errors.loanAmount}
             value={inputs.loanAmount}
-            onChange={(value) =>
-              setInputs((prev) => ({
-                ...prev,
-                loanAmount: value,
-              }))
-            }
+            onChange={(value) => onChange("loanAmount", value)}
           />
           <div className="w-full flex flex-col gap-6">
             <InputNumber
@@ -45,12 +44,7 @@ const FormSection = () => {
               isRight={false}
               isError={errors.duration}
               value={inputs.duration}
-              onChange={(value) =>
-                setInputs((prev) => ({
-                  ...prev,
-                  duration: value,
-                }))
-              }
+              onChange={(value) => onChange("duration", value)}
             />
             <InputNumber
               unity={"%"}
@@ -58,12 +52,7 @@ const FormSection = () => {
               isRight={false}
               isError={errors.interestRate}
               value={inputs.interestRate}
-              onChange={(value) =>
-                setInputs((prev) => ({
-                  ...prev,
-                  interestRate: value,
-                }))
-              }
+              onChange={(value) => onChange("interestRate", value)}
             />
           </div>
         </fieldset>
@@ -72,28 +61,32 @@ const FormSection = () => {
             Mortgage type
           </legend>
           <InputRadio
-            label={"repayement"}
+            label={"repayment"}
             value={"repayment"}
             isSelected={inputs.loanType === "repayment"}
-            onChange={(value) =>
-              setInputs((prev) => ({
-                ...prev,
-                loanType: value,
-              }))
-            }
+            onChange={(value) => onChange("loanType", value)}
           />
           <InputRadio
             label={"interest Only"}
             value={"interestOnly"}
             isSelected={inputs.loanType === "interestOnly"}
-            onChange={(value) =>
-              setInputs((prev) => ({
-                ...prev,
-                loanType: value,
-              }))
-            }
+            onChange={(value) => onChange("loanType", value)}
           />
+          {errors.loanType && (
+            <p className="text-preset-5 text-red">This field is required</p>
+          )}
         </fieldset>
+        <button
+          type="submit"
+          className="bg-lime text-preset-3 text-slate-900 flex items-center justify-center py-4 rounded-full w-82"
+        >
+          <img
+            className="w-4 mr-4"
+            src="../../assets/images/icon-calculator.svg"
+            alt=""
+          />
+          Calculate Repayments
+        </button>
       </form>
     </section>
   );
