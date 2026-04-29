@@ -26,6 +26,7 @@ const InputNumber = ({
         className={cn(
           "input-wrapper flex border border-slate-500 rounded-sm",
           isRight ? "flex-row-reverse justify-between" : "justify-start",
+          { "border-red": isError },
         )}
       >
         <span
