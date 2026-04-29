@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Inputs, Errors } from "./types";
 import FormSection from "./components/FormSection";
+import useMortgageCalculator from "./hooks/useMortgageCalculator";
 
 function App() {
   const [inputs, setInputs] = useState<Inputs>({
@@ -17,6 +18,8 @@ function App() {
     loanType: false,
   });
 
+  const { result, calculate } = useMortgageCalculator();
+
   const handleSubmit = () => {
     const newErrors = {
       loanAmount: inputs.loanAmount === "",
@@ -26,7 +29,14 @@ function App() {
     };
     setErrors(newErrors);
     if (Object.values(newErrors).some((value) => value === true)) return;
-    triggerCalculation();
+    const parsedInputs = {
+      ...inputs,
+      loanAmount: Number(inputs.loanAmount),
+      interestRate: Number(inputs.interestRate),
+      duration: Number(inputs.duration),
+    };
+
+    calculate(parsedInputs);
   };
 
   return (
