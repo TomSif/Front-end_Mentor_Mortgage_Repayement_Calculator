@@ -52,6 +52,14 @@
   line-height: 125%;
   letter-spacing: -1px;
 }
+@utility text-preset-3-error {
+  font-family: var(--font-jakarta);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 125%;
+  letter-spacing: -1px;
+  color: white;
+}
 
 @utility text-preset-4 {
   font-family: var(--font-jakarta);

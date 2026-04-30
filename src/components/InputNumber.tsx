@@ -18,7 +18,7 @@ const InputNumber = ({
   onChange,
 }: InputNumberProps) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 w-full">
       <label className="text-preset-4 text-slate-700" htmlFor={unity}>
         {label}
       </label>
@@ -31,7 +31,7 @@ const InputNumber = ({
       >
         <span
           className={cn("px-4 py-3 text-preset-3 text-slate-700 bg-slate-100", {
-            "text-white bg-red": isError,
+            " text-preset-3-error bg-red": isError,
           })}
         >
           {unity}
