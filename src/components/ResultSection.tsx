@@ -9,10 +9,13 @@ const ResultSection = ({ result }: ResultSectionProps) => {
     currency: "GBP",
   });
   return (
-    <section className="px-6 py-8 bg-slate-900  md:rounded-b-lg w-full">
+    <section
+      aria-live="polite"
+      className="px-6 py-8 bg-slate-900  md:rounded-b-lg w-full md:p-10 xl:rounded-tl-auto xl:rounded-bl-[5rem] flex items-center justify-center"
+    >
       {result === null ? (
-        <article className="flex flex-col items-center gap-4 w-full ">
-          <div className="w-48  h-48">
+        <article className="flex flex-col items-center justify-center  gap-4 w-full ">
+          <div className="w-48  h-48 ">
             <img
               className="aspect-square object-cover"
               src="/assets/images/illustration-empty.svg"
@@ -38,7 +41,7 @@ const ResultSection = ({ result }: ResultSectionProps) => {
             </p>
           </div>
           <div className="bg-black/25 border-t-2 border-lime rounded-xl py-6 px-4 w-full">
-            <div className="flex flex-col gap-2 mb-4">
+            <div className="flex flex-col gap-2 pb-4 xl:pb-8 border border-transparent border-b-slate-400/25">
               <h3 className="text-preset-4 text-slate-300">
                 Your monthly repayments
               </h3>
@@ -49,7 +52,7 @@ const ResultSection = ({ result }: ResultSectionProps) => {
                 {formatter.format(result.monthlyPayment)}
               </data>
             </div>
-            <div className="flex flex-col gap-2 mt-4">
+            <div className="flex flex-col gap-2 pt-4 xl:pt-8">
               <h4 className="text-preset-4 text-slate-300">
                 Total you'll repay over the term
               </h4>

@@ -34,7 +34,7 @@ function App() {
   };
 
   return (
-    <main className="flex flex-col md:p-10">
+    <main className="flex flex-col bg-white xl:flex-row md:rounded-[1.25rem]">
       <FormSection
         inputs={inputs}
         errors={errors}

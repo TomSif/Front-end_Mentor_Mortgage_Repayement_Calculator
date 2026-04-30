@@ -15,7 +15,7 @@ const FormSection = ({
   onSubmit,
 }: FormSectionProps) => {
   return (
-    <section className="w-full py-8 px-6 flex flex-col gap-6">
+    <section className="w-full py-8 px-6 flex flex-col gap-6 md:p-10 md:rounded-t-[1.25rem]  xl:rounded-l-[1.25rem]">
       <div className="flex flex-col gap-2 justify-start items-start text-left">
         <h1 className="text-preset-2 text-slate-900">Mortgage Calculator</h1>
         <button className="text-preset-4 text-slate-700">Clear All</button>
