@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Inputs, Errors } from "./types";
 import FormSection from "./components/FormSection";
+import ResultSection from "./components/ResultSection";
 import useMortgageCalculator from "./hooks/useMortgageCalculator";
 
 function App() {
@@ -29,14 +30,7 @@ function App() {
     };
     setErrors(newErrors);
     if (Object.values(newErrors).some((value) => value === true)) return;
-    const parsedInputs = {
-      ...inputs,
-      loanAmount: Number(inputs.loanAmount),
-      interestRate: Number(inputs.interestRate),
-      duration: Number(inputs.duration),
-    };
-
-    calculate(parsedInputs);
+    calculate(inputs);
   };
 
   return (
@@ -52,6 +46,7 @@ function App() {
         }}
         onSubmit={handleSubmit}
       />
+      <ResultSection result={result} />
     </main>
   );
 }
