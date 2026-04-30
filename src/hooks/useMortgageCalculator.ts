@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Inputs } from "../types";
 
-interface Result {
+export interface Result {
   monthlyPayment: number;
   totalRepayment: number;
 }
