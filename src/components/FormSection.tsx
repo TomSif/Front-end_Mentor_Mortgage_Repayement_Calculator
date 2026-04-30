@@ -32,16 +32,16 @@ const FormSection = ({
           <InputNumber
             unity={"£"}
             label={"Mortgage Amount"}
-            isRight={true}
+            isRight={false}
             isError={errors.loanAmount}
             value={inputs.loanAmount}
             onChange={(value) => onChange("loanAmount", value)}
           />
-          <div className="w-full flex flex-col gap-6">
+          <div className="w-full flex flex-col md:flex-row gap-6">
             <InputNumber
               unity={"years"}
               label={"Mortgage Term"}
-              isRight={false}
+              isRight={true}
               isError={errors.duration}
               value={inputs.duration}
               onChange={(value) => onChange("duration", value)}
@@ -49,7 +49,7 @@ const FormSection = ({
             <InputNumber
               unity={"%"}
               label={"Interest Rate"}
-              isRight={false}
+              isRight={true}
               isError={errors.interestRate}
               value={inputs.interestRate}
               onChange={(value) => onChange("interestRate", value)}
