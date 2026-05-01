@@ -65,7 +65,9 @@ const InputNumber = ({
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={(e) => {
-            let sanitizedValue = e.target.value.replace(/[^0-9.]/g, "");
+            let sanitizedValue = e.target.value
+              .replace(/[^0-9.]/g, "")
+              .replace(/^\./, "0.");
             if (max !== undefined && Number(sanitizedValue) > max) return;
             const parts = sanitizedValue.split(".");
             if (parts.length > 2) {
