@@ -16,6 +16,12 @@ const useMortgageCalculator = () => {
     const r = interestRate / 100 / 12;
     const n = duration * 12;
 
+    if (r === 0) {
+      const monthly = loanAmount / n;
+      setResult({ monthlyPayment: monthly, totalRepayment: loanAmount });
+      return;
+    }
+
     const monthlyResult =
       inputs.loanType === "repayment"
         ? (loanAmount * (r * (1 + r) ** n)) / ((1 + r) ** n - 1)
