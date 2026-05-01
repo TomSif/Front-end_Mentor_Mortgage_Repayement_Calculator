@@ -31,7 +31,7 @@ const ResultSection = ({ result }: ResultSectionProps) => {
           </p>
         </article>
       ) : (
-        <article className="flex flex-col items-start gap-6 w-ful">
+        <article className="flex flex-col items-start gap-6 w-full">
           <div className="flex flex-col items-start gap-4">
             <h2 className="text-preset-2 text-white">Your Result</h2>
             <p className="text-preset-4 text-slate-300">
