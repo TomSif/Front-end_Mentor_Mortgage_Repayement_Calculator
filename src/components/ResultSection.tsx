@@ -25,7 +25,7 @@ const ResultSection = ({ result }: ResultSectionProps) => {
           <h2 className="text-white text-preset-2 text-center">
             Result shown here
           </h2>
-          <p className="text-preset-4 text-slate-300">
+          <p className="text-preset-4 text-slate-300 xl:text-center">
             Complete the form and click “calculate repayments” to see what your
             monthly repayments would be.
           </p>
