@@ -29,6 +29,10 @@ const useMortgageCalculator = () => {
       return;
     }
 
+    if (n === 0) {
+      return;
+    }
+
     const monthlyResult =
       inputs.loanType === "repayment"
         ? (loanAmount * (r * (1 + r) ** n)) / ((1 + r) ** n - 1)
