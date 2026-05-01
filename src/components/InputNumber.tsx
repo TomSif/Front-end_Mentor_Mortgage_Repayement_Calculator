@@ -8,6 +8,7 @@ interface InputNumberProps {
   isError: boolean;
   value: string;
   maxLength: number;
+  name: string;
   max?: number;
   onChange: (value: string) => void;
 }
@@ -19,6 +20,7 @@ const InputNumber = ({
   isError,
   value,
   maxLength,
+  name,
   max,
   onChange,
 }: InputNumberProps) => {
@@ -52,7 +54,7 @@ const InputNumber = ({
         <input
           className="border-none outline-none bg-transparent text-preset-3 text-slate-900 pl-4 hover:cursor-pointer flex-1 min-w-0 transition-colors duration-200"
           type="text"
-          name={unity}
+          name={name}
           id={id}
           maxLength={maxLength}
           value={value}

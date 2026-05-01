@@ -38,6 +38,7 @@ const FormSection = ({
           <legend className="sr-only">Loan details</legend>
           <InputNumber
             unity={"£"}
+            name={"loanAmount"}
             label={"Mortgage Amount"}
             isRight={false}
             isError={errors.loanAmount}
@@ -49,6 +50,7 @@ const FormSection = ({
           <div className="w-full flex flex-col md:flex-row gap-6">
             <InputNumber
               unity={"years"}
+              name={"duration"}
               label={"Mortgage Term"}
               isRight={true}
               isError={errors.duration}
@@ -59,6 +61,7 @@ const FormSection = ({
             />
             <InputNumber
               unity={"%"}
+              name={"interestRate"}
               label={"Interest Rate"}
               isRight={true}
               isError={errors.interestRate}
