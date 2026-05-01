@@ -91,3 +91,9 @@
     background-color: var(--color-slate-100);
   }
 }
+@media (min-width: 80rem) {
+  .root {
+    width: 100vw;
+    height: 100vh;
+  }
+}

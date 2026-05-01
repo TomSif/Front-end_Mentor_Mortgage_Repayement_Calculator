@@ -20,26 +20,30 @@ const InputNumber = ({
 }: InputNumberProps) => {
   const id = useId();
   return (
-    <div className="flex flex-col gap-3 w-full">
+    <div className="flex flex-col gap-3 w-full flex-1 min-w-0">
       <label className="text-preset-4 text-slate-700" htmlFor={unity}>
         {label}
       </label>
       <div
         className={cn(
-          "input-wrapper flex border border-slate-500 rounded-sm",
+          "input-wrapper flex border border-slate-500 hover:border-slate-900 rounded-sm hover:cursor-pointer",
           isRight ? "flex-row-reverse justify-between" : "justify-start",
           { "border-red": isError },
         )}
       >
         <span
-          className={cn("px-4 py-3 text-preset-3 text-slate-700 bg-slate-100", {
-            " text-preset-3-error bg-red": isError,
-          })}
+          className={cn(
+            "px-4 py-3 text-preset-3 text-slate-700 bg-slate-100 ",
+            {
+              " text-preset-3-error bg-red": isError,
+            },
+            isRight ? "rounded-r-sm" : "rounded-l-sm",
+          )}
         >
           {unity}
         </span>
         <input
-          className="border-none outline-none bg-transparent text-preset-3 text-slate-900 pl-4"
+          className="border-none outline-none bg-transparent text-preset-3 text-slate-900 pl-4 hover:cursor-pointer flex-1 min-w-0"
           type="text"
           name={unity}
           id={unity}

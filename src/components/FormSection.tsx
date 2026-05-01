@@ -17,21 +17,24 @@ const FormSection = ({
   onClear,
 }: FormSectionProps) => {
   return (
-    <section className="w-full py-8 px-6 flex flex-col gap-6 md:p-10 md:rounded-t-[1.25rem]  xl:rounded-l-[1.25rem]">
+    <section className="py-8 px-6 flex flex-col gap-6 md:p-10 md:rounded-t-[1.25rem]  xl:rounded-l-[1.25rem] flex-1 min-w-0">
       <div className="flex flex-col gap-2 justify-start items-start text-left">
         <h1 className="text-preset-2 text-slate-900">Mortgage Calculator</h1>
-        <button onClick={onClear} className="text-preset-4 text-slate-700">
+        <button
+          onClick={onClear}
+          className="text-preset-4 text-slate-700 hover:cursor-pointer border hover:border-b-slate-900 border-transparent hover:text-slate-900"
+        >
           Clear All
         </button>
       </div>
       <form
-        className="w-full flex flex-col gap-6"
+        className="w-full flex flex-col gap-6 flex-1 min-w-0"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit();
         }}
       >
-        <fieldset className="flex flex-col gap-6 w-full">
+        <fieldset className="flex flex-col gap-6 w-full flex-1 min-w-0">
           <legend className="sr-only">Loan details</legend>
           <InputNumber
             unity={"£"}
@@ -82,14 +85,14 @@ const FormSection = ({
         </fieldset>
         <button
           type="submit"
-          className="bg-lime text-preset-3 text-slate-900 flex items-center justify-center py-4 rounded-full w-82"
+          className="bg-lime text-preset-3 text-slate-900 flex items-center justify-center py-4 rounded-full max-w-82 w-full relative after:content-[''] after:absolute after:inset-0 hover:after:bg-white/50 hover:cursor-pointer"
         >
           <img
-            className="w-4 mr-4"
+            className="w-4 mr-4 z-20"
             src="../../assets/images/icon-calculator.svg"
             alt=""
           />
-          Calculate Repayments
+          <span className="z-20">Calculate Repayments</span>
         </button>
       </form>
     </section>
