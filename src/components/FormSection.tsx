@@ -44,8 +44,8 @@ const FormSection = ({
             value={inputs.loanAmount}
             onChange={(value) => onChange("loanAmount", value)}
             maxLength={8}
-            max={99999999}
           />
+
           <div className="w-full flex flex-col md:flex-row gap-6">
             <InputNumber
               unity={"years"}
@@ -54,7 +54,7 @@ const FormSection = ({
               isError={errors.duration}
               value={inputs.duration}
               onChange={(value) => onChange("duration", value)}
-              maxLength={2}
+              maxLength={3}
               max={100}
             />
             <InputNumber

@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, useState } from "react";
 import { cn } from "../lib/cn";
 
 interface InputNumberProps {
@@ -8,7 +8,7 @@ interface InputNumberProps {
   isError: boolean;
   value: string;
   maxLength: number;
-  max: number;
+  max?: number;
   onChange: (value: string) => void;
 }
 
@@ -22,7 +22,10 @@ const InputNumber = ({
   max,
   onChange,
 }: InputNumberProps) => {
+  const [isFocus, setIsFocus] = useState(false);
   const id = useId();
+  const shouldShowHint = max !== undefined && isFocus && !isError;
+
   return (
     <div className="flex flex-col gap-3 w-full flex-1 min-w-0">
       <label className="text-preset-4 text-slate-700" htmlFor={unity}>
@@ -30,7 +33,7 @@ const InputNumber = ({
       </label>
       <div
         className={cn(
-          "group flex border border-slate-500  hover:not-focus-within:border-slate-900 rounded-sm hover:cursor-pointer focus-within:border-lime transition-colors duration-200",
+          "group flex border border-slate-500 relative  hover:not-focus-within:border-slate-900 rounded-sm hover:cursor-pointer focus-within:border-lime transition-colors duration-200",
           isRight ? "flex-row-reverse justify-between" : "justify-start",
           { "border-red": isError },
         )}
@@ -55,9 +58,11 @@ const InputNumber = ({
           value={value}
           aria-invalid={isError}
           aria-describedby={id + "-error"}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
           onChange={(e) => {
             let sanitizedValue = e.target.value.replace(/[^0-9.]/g, "");
-            if (Number(sanitizedValue) > max) return;
+            if (max !== undefined && Number(sanitizedValue) > max) return;
             const parts = sanitizedValue.split(".");
             if (parts.length > 2) {
               sanitizedValue = parts[0] + "." + parts.slice(1).join("");
@@ -66,6 +71,11 @@ const InputNumber = ({
           }}
         />
       </div>
+      {shouldShowHint && (
+        <p className="text-preset-6 text-slate-500">
+          *Enter a value between 0 and {max}
+        </p>
+      )}
       {isError && (
         <p id={id + "-error"} className="text-preset-5 text-red">
           This field is required
