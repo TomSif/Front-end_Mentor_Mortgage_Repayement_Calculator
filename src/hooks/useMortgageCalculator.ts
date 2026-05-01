@@ -16,6 +16,13 @@ const useMortgageCalculator = () => {
     const r = interestRate / 100 / 12;
     const n = duration * 12;
 
+    if (
+      !Number.isFinite(loanAmount) ||
+      !Number.isFinite(interestRate) ||
+      !Number.isFinite(duration)
+    )
+      return;
+
     if (r === 0) {
       const monthly = loanAmount / n;
       setResult({ monthlyPayment: monthly, totalRepayment: loanAmount });
