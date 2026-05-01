@@ -19,7 +19,25 @@ function App() {
     loanType: false,
   });
 
-  const { result, calculate } = useMortgageCalculator();
+  const { result, calculate, reset } = useMortgageCalculator();
+
+  const onClearAll = () => {
+    const initialState: Inputs = {
+      loanAmount: "",
+      duration: "",
+      interestRate: "",
+      loanType: "",
+    };
+    setInputs(initialState);
+    const clearError: Errors = {
+      loanAmount: false,
+      duration: false,
+      interestRate: false,
+      loanType: false,
+    };
+    setErrors(clearError);
+    reset();
+  };
 
   const handleSubmit = () => {
     const newErrors = {
@@ -45,6 +63,7 @@ function App() {
           }));
         }}
         onSubmit={handleSubmit}
+        onClear={onClearAll}
       />
       <ResultSection result={result} />
     </main>

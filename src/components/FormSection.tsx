@@ -7,18 +7,22 @@ interface FormSectionProps {
   errors: Errors;
   onChange: (field: keyof Inputs, value: string) => void;
   onSubmit: () => void;
+  onClear: () => void;
 }
 const FormSection = ({
   inputs,
   errors,
   onChange,
   onSubmit,
+  onClear,
 }: FormSectionProps) => {
   return (
     <section className="w-full py-8 px-6 flex flex-col gap-6 md:p-10 md:rounded-t-[1.25rem]  xl:rounded-l-[1.25rem]">
       <div className="flex flex-col gap-2 justify-start items-start text-left">
         <h1 className="text-preset-2 text-slate-900">Mortgage Calculator</h1>
-        <button className="text-preset-4 text-slate-700">Clear All</button>
+        <button onClick={onClear} className="text-preset-4 text-slate-700">
+          Clear All
+        </button>
       </div>
       <form
         className="w-full flex flex-col gap-6"

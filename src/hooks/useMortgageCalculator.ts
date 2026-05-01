@@ -29,7 +29,9 @@ const useMortgageCalculator = () => {
     setResult({ monthlyPayment: monthlyResult, totalRepayment: totalResult });
   };
 
-  return { result, calculate };
+  const reset = () => setResult(null);
+
+  return { result, calculate, reset };
 };
 
 export default useMortgageCalculator;
