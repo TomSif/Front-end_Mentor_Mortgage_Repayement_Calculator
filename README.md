@@ -1,110 +1,219 @@
-# Frontend Mentor - Mortgage repayment calculator
+# Mortgage Repayment Calculator - Thomas Sifferle 🏠
 
-![Design preview for the Mortgage repayment calculator coding challenge](./preview.jpg)
+![forthebadge](https://forthebadge.com/api/badges/generate?primaryLabel=USES&secondaryLabel=HTML)
+![forthebadge](https://forthebadge.com/api/badges/generate?primaryLabel=USES&secondaryLabel=CSS)
+![forthebadge](https://forthebadge.com/api/badges/generate?primaryLabel=USES&secondaryLabel=JS)
+[![forthebadge](https://forthebadge.com/api/badges/generate?primaryLabel=USES&secondaryLabel=GIT)](https://github.com/TomSif)
+[![React](https://img.shields.io/badge/react_19-20232a?style=for-the-badge&logo=react&logocolor=61dafb)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/vite-646cff?style=for-the-badge&logo=vite&logocolor=white)](https://vitejs.dev/)
+[![Tailwind](https://img.shields.io/badge/tailwindcss_v4-0F172A?&logo=tailwindcss&logocolor=white)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-## Welcome! 👋
+![Design preview for the Mortgage Repayment Calculator coding challenge](./public/assets/images/screenshot.png)
 
-Thanks for checking out this front-end coding challenge.
+### 🌐 Live Demo:
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+**[View live site →](https://front-end-mentor-mortgage-repayemen.vercel.app/)**
 
-**To do this challenge, you need a basic understanding of HTML, CSS and JavaScript.**
+Deployed on Vercel with HTTPS and performance optimizations.
 
-## The challenge
+---
 
-Your challenge is to build out this mortgage repayment calculator and get it looking as close to the design as possible.
+This is a solution to the [Mortgage Repayment Calculator challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/mortgage-repayment-calculator-Galx1LXK73). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+## Table of contents
 
-Your users should be able to: 
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-- Input mortgage information and see monthly repayment and total repayment amounts after submitting the form
-- See form validation messages if any field is incomplete
-- Complete the form only using their keyboard
-- View the optimal layout for the interface depending on their device's screen size
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- Enter a mortgage amount, term, interest rate, and mortgage type (Repayment or Interest Only)
+- See form validation messages when any field is empty on submit
+- See a dynamic results panel update with monthly repayment and total amount when the form is submitted
+- Reset all inputs and results with a single "Clear All" action
+- View the optimal layout depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
 
-### Want some support on the challenge? 
+### Screenshot
 
-[Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+![](./public/assets/images/screenshot-mobile.png)
 
-## Where to find everything
+### Links
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+- Solution URL: [GitHub Repository](https://github.com/TomSif/Front-end_Mentor_Mortgage_Repayement_Calculator)
+- Live Site URL: [Vercel Deployment](https://front-end-mentor-mortgage-repayemen.vercel.app/)
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+## My process
 
-If you would like the Figma design file to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+### Built with
 
-All the required assets for this project are in the `/assets` folder. The images are already exported for the correct screen size and optimized.
+- Semantic HTML5 markup (`fieldset`, `legend` for form grouping)
+- CSS custom properties
+- Mobile-first workflow
+- [React 19](https://react.dev/) - JS library
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) - Build tool
+- [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS (`@tailwindcss/vite` plugin, `@theme` variables, `@utility` presets)
+- [clsx](https://github.com/lukeed/clsx) + [tailwind-merge](https://github.com/dcastil/tailwind-merge) — `cn()` utility for conditional classNames
 
-We also include variable and static font files for the required fonts for this project. You can choose to either link to Google Fonts or use the local font files to host the fonts yourself. Note that we've removed the static font files for the font weights that aren't needed for this project.
+### What I learned
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+#### Custom hook — `useMortgageCalculator`
 
-## Using AI coding assistants
+Extracting the calculation logic into a dedicated `useMortgageCalculator` hook was the architectural centrepiece of this project. The hook owns a `useState<Result | null>` internally, exposes a `calculate(inputs: Inputs)` function and a `reset()` function, and returns the current result. This kept `App` free of business logic.
 
-We've included two files to help you if you're using AI coding assistants (like Claude, GitHub Copilot, Cursor, etc.) while working on this challenge:
+```ts
+// The hook's public surface:
+const { result, calculate, reset } = useMortgageCalculator();
+```
 
-- `AGENTS.md` - Contains detailed instructions for AI assistants on how to help you with this challenge. It's tailored to this challenge's difficulty level, so the AI will provide guidance appropriate to your learning stage—offering more support for beginner challenges and encouraging more independence on advanced ones.
-- `CLAUDE.md` - A pointer file that directs Claude-based tools to the AGENTS.md instructions.
+Two mortgage formulas live inside the hook — standard Repayment (compound amortisation) and Interest Only. The `totalRepayment` for Interest Only required a specific correction: it isn't `monthlyPayment * n` but `monthlyPayment * n + loanAmount`, a bug I identified and fixed independently during a code review pass.
 
-**How to use them:** You don't need to do anything! These files are automatically detected by most AI coding tools. The AI will read them and adjust its behavior to be a better learning partner—guiding you toward solutions rather than just giving you the answers.
+#### Lifting state and the `onChange: (field, value)` pattern
 
-**Note:** These files are designed to help you *learn*, not to do the work for you. The AI is instructed to ask questions, give hints, and explain concepts rather than writing complete solutions.
+`FormSection` started as a stateful component, then was refactored into a controlled ("dumb") component with all state lifted to `App`. The key prop signature became:
 
-## Building your project
+```ts
+onChange: (field: keyof Inputs, value: string) => void
+```
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+This pattern — passing both the field name and the value up — lets a single handler in `App` update one key at a time:
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+```ts
+const handleChange = (field: keyof Inputs, value: string) => {
+  setInputs((prev) => ({ ...prev, [field]: value }));
+};
+```
 
-## Deploying your project
+The combination of `keyof Inputs` (constraining the key) and computed property names (`[field]: value`) required deliberate practice before becoming reliable.
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+#### TypeScript — `Record<K, V>` and mapped types
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+The `Errors` type is derived directly from `Inputs` using a mapped type, so adding a field to the form automatically extends the error tracking:
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://www.frontendmentor.io/guides/hosting-your-solution).
+```ts
+type Errors = Record<keyof Inputs, boolean>;
+```
 
-## Create a custom `README.md`
+This `data-first` approach — deriving types from the actual data shapes rather than declaring them upfront — continued the methodology started in the previous project and produced leaner, more accurate types.
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+#### Validation — `Object.values().some()` pattern
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+Form validation on submit checks each field in `Inputs` and marks it as an error if empty. Rather than a chain of `if` statements, the result is collected into an error object and a single check determines whether to abort:
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+```ts
+const handleSubmit = () => {
+  const newErrors: Errors = {
+    mortgageAmount: inputs.mortgageAmount === "",
+    mortgageTerm: inputs.mortgageTerm === "",
+    interestRate: inputs.interestRate === "",
+    loanType: inputs.loanType === "",
+  };
+  setErrors(newErrors);
+  if (Object.values(newErrors).some(Boolean)) return;
+  calculate(inputs);
+};
+```
 
-## Submitting your solution
+`Object.values().some(Boolean)` was new — once understood as "does any value in this object satisfy a condition", it became an immediate reflex for multi-field early returns.
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://www.frontendmentor.io/guides/how-to-submit-solutions) for tips on how to do this.
+#### Input filtering without `useEffect`
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+The numeric text inputs needed to reject non-numeric characters and prevent multiple decimal points. The initial instinct was to use `useEffect` to watch the value and clean it — which is incorrect. Input filtering is a synchronous transformation that belongs directly in the `onChange` handler, not a side-effect after render:
 
-## Sharing your solution
+```ts
+const filtered = value.replace(/[^0-9.]/g, "");
+const sanitised = filtered.split(".").slice(0, 2).join(".");
+```
 
-There are multiple places you can share your solution:
+`maxLength` on the input element handled length capping cleanly, avoiding an over-engineered regex solution.
 
-1. Share your solution page in the **#finished-projects** channel of our [community](https://www.frontendmentor.io/community). 
-2. Share on [X (formerly Twitter)](https://x.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in your post. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on [LinkedIn](https://www.linkedin.com/company/frontend-mentor/).
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+#### Accessibility — `useId()`, `aria-describedby`, `aria-live`
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+Each `InputNumber` instance generates its own unique id via `useId()`, used to wire up `aria-describedby` between the input and its error message. This ensures screen readers announce the relevant error without relying on DOM proximity:
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+```tsx
+const id = useId();
+// ...
+<label htmlFor={id} className="sr-only">{label}</label>
+<input id={id} aria-describedby={`${id}-error`} aria-invalid={isError} ... />
+{isError && <p id={`${id}-error`}>{errorMessage}</p>}
+```
 
-## Got feedback for us?
+`role="alert"` was deliberately avoided on error messages — it conflicts with `aria-describedby` and causes double announcements. `aria-live="polite"` was placed on the `ResultSection` container so the computed results are announced after the calculation completes without interrupting ongoing screen reader output.
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+#### Tailwind v4 focus states — `peer-*`, `group-*`, `has-*`, `in-*`
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
+This project was the first to use Tailwind v4's relational variants systematically. Several important distinctions were worked through:
 
-**Have fun building!** 🚀
+- **`peer-focus-visible:`** — styles a sibling based on the focus state of the peer element. Used to show a visible ring on the radio circle when the hidden native input is focused via keyboard.
+- **`group-focus-within:`** — styles a descendant based on any focused element inside the group ancestor. Used to highlight the `InputNumber` wrapper when any child is focused.
+- **`focus-within:` vs `in-focus-within:`** — critical directional distinction: `focus-within:` checks whether a _descendant_ of the element is focused; `in-focus-within:` checks whether an _ancestor_ is in a focus-within state. Using the wrong one silently produces no visual change.
+- **`has-focus-visible:`** — native Tailwind v4 syntax (no brackets needed for common pseudo-classes), applied to a label to highlight it when a descendant receives keyboard focus.
+
+```html
+<!-- Radio focus ring via peer -->
+<input type="radio" class="sr-only peer" />
+<div class="peer-focus-visible:border-lime ..."></div>
+
+<!-- InputNumber wrapper highlight -->
+<div class="group focus-within:border-lime ...">
+  <input class="group-focus-within:bg-lime/15 ..." />
+</div>
+```
+
+#### Clear All — coordinated state reset
+
+The "Clear All" button resets three independent state slices: `inputs`, `errors`, and the calculator result. The result lives inside the hook, so the hook exposes a `reset` function that sets its internal state back to `null`:
+
+```ts
+// In App:
+const handleClearAll = () => {
+  setInputs(defaultInputs);
+  setErrors(defaultErrors);
+  reset(); // from useMortgageCalculator
+};
+```
+
+A subtle ordering issue surfaced during implementation: `reset` must be destructured from the hook before `handleClearAll` is declared, otherwise the variable is used before it exists. JavaScript hoisting does not apply to `const` declarations from hook destructuring.
+
+#### Algorithmic decomposition — the O7 protocol
+
+The session that introduced `useMortgageCalculator` produced the first complete "blank wall" in twelve projects: faced with implementing the hook, it became impossible to write a single line without first knowing exactly what goes in, what happens to it, and what comes out. The fix — writing the three steps in plain French before touching the keyboard — became a mandatory protocol for every new function from that point forward:
+
+> **O7:** Before writing any new function: write in French (1) what goes in, (2) what is done with it, (3) what comes out. No code before all three are clear.
+
+### Continued development
+
+- **`keyof` and mapped types** — `Record<keyof Inputs, boolean>` is now understood, but the general pattern of deriving types from other types needs more projects before it becomes the default reflex.
+- **Relational Tailwind v4 variants** — `peer-*`, `group-*`, `has-*`, and `in-*` directions are conceptually clear but not yet fully automatic. The `in-*` vs `focus-within:` distinction still requires deliberate verification.
+- **O7 decomposition under pressure** — the pseudo-code-first protocol works well when applied, but the instinct to skip it under complexity still surfaces. Making it a non-negotiable reflex is the active goal.
+- **TypeScript prop typing** — the distinction between typing the whole object (`result: Result | null`) versus a key inside the object (`result: { result: Result | null }`) still requires conscious effort. One more project with complex prop shapes should anchor it.
+
+## Author
+
+- Frontend Mentor - [@TomSif](https://www.frontendmentor.io/profile/TomSif)
+- GitHub - [@TomSif](https://github.com/TomSif)
+
+## Acknowledgments
+
+This project was built with AI-assisted mentoring (Claude). The approach: I code by hand, Claude acts as a Socratic mentor — asking questions, explaining concepts, reviewing my reasoning. Architectural decisions (how to structure state, when to extract a hook, what to lift) stayed mine.
+
+Specific AI contributions are documented transparently in my [progression log](./progression.md):
+
+- **Written by Claude:** project scaffold (`chore/setup` commits), design tokens in `index.css`, TypeScript syntax when blocked
+- **My initiative:** autonomous identification of the `totalRepayment` Interest Only bug, the decision to lift state from `FormSection` to `App`, implementing `Clear All` from scratch without hints, identifying the missing `checked` prop on the radio input from keyboard symptoms
+- **Collaborative:** building `useMortgageCalculator` after guided decomposition, working through `Object.values().some()` validation pattern, debugging Tailwind v4 focus variants, establishing the O7 pseudo-code protocol
