@@ -61,6 +61,10 @@ function App() {
             ...prev,
             [field]: value,
           }));
+          setErrors((prev) => ({
+            ...prev,
+            [field]: false,
+          }));
         }}
         onSubmit={handleSubmit}
         onClear={onClearAll}
