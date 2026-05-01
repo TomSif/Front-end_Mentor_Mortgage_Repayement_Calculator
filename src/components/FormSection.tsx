@@ -72,7 +72,10 @@ const FormSection = ({
             />
           </div>
         </fieldset>
-        <fieldset className="flex flex-col gap-3 w-full">
+        <fieldset
+          aria-describedby={errors.loanType ? "errorRadio" : undefined}
+          className="flex flex-col gap-3 w-full"
+        >
           <legend className="text-preset-4 text-slate-700 mb-3">
             Mortgage type
           </legend>
@@ -89,7 +92,9 @@ const FormSection = ({
             onChange={(value) => onChange("loanType", value)}
           />
           {errors.loanType && (
-            <p className="text-preset-5 text-red">This field is required</p>
+            <p id="errorRadio" className="text-preset-5 text-red">
+              This field is required
+            </p>
           )}
         </fieldset>
         <button

@@ -22,7 +22,7 @@ const ResultSection = ({ result }: ResultSectionProps) => {
               alt=""
             />
           </div>
-          <h2 className="text-white text-preset text-center">
+          <h2 className="text-white text-preset-2 text-center">
             Result shown here
           </h2>
           <p className="text-preset-4 text-slate-300">
