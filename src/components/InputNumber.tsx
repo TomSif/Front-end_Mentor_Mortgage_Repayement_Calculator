@@ -28,7 +28,7 @@ const InputNumber = ({
 
   return (
     <div className="flex flex-col gap-3 w-full flex-1 min-w-0">
-      <label className="text-preset-4 text-slate-700" htmlFor={unity}>
+      <label className="text-preset-4 text-slate-700" htmlFor={id}>
         {label}
       </label>
       <div
@@ -53,7 +53,7 @@ const InputNumber = ({
           className="border-none outline-none bg-transparent text-preset-3 text-slate-900 pl-4 hover:cursor-pointer flex-1 min-w-0 transition-colors duration-200"
           type="text"
           name={unity}
-          id={unity}
+          id={id}
           maxLength={maxLength}
           value={value}
           inputMode="numeric"
