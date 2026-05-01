@@ -26,14 +26,14 @@ const InputNumber = ({
       </label>
       <div
         className={cn(
-          "input-wrapper flex border border-slate-500 hover:border-slate-900 rounded-sm hover:cursor-pointer",
+          "group flex border border-slate-500  hover:not-focus-within:border-slate-900 rounded-sm hover:cursor-pointer focus-within:border-lime transition-colors duration-200",
           isRight ? "flex-row-reverse justify-between" : "justify-start",
           { "border-red": isError },
         )}
       >
         <span
           className={cn(
-            "px-4 py-3 text-preset-3 text-slate-700 bg-slate-100 ",
+            "px-4 py-3 text-preset-3 text-slate-700 bg-slate-100 group-focus-within:bg-lime transition-colors duration-200",
             {
               " text-preset-3-error bg-red": isError,
             },
@@ -43,7 +43,7 @@ const InputNumber = ({
           {unity}
         </span>
         <input
-          className="border-none outline-none bg-transparent text-preset-3 text-slate-900 pl-4 hover:cursor-pointer flex-1 min-w-0"
+          className="border-none outline-none bg-transparent text-preset-3 text-slate-900 pl-4 hover:cursor-pointer flex-1 min-w-0 transition-colors duration-200"
           type="text"
           name={unity}
           id={unity}
