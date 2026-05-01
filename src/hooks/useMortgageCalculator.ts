@@ -23,13 +23,13 @@ const useMortgageCalculator = () => {
     )
       return;
 
-    if (r === 0) {
-      const monthly = loanAmount / n;
-      setResult({ monthlyPayment: monthly, totalRepayment: loanAmount });
+    if (n === 0) {
       return;
     }
 
-    if (n === 0) {
+    if (r === 0) {
+      const monthly = loanAmount / n;
+      setResult({ monthlyPayment: monthly, totalRepayment: loanAmount });
       return;
     }
 
