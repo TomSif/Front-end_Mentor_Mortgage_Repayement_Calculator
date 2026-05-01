@@ -7,6 +7,8 @@ interface InputNumberProps {
   isRight: boolean;
   isError: boolean;
   value: string;
+  maxLength: number;
+  max: number;
   onChange: (value: string) => void;
 }
 
@@ -16,6 +18,8 @@ const InputNumber = ({
   isRight,
   isError,
   value,
+  maxLength,
+  max,
   onChange,
 }: InputNumberProps) => {
   const id = useId();
@@ -47,12 +51,13 @@ const InputNumber = ({
           type="text"
           name={unity}
           id={unity}
-          maxLength={9}
+          maxLength={maxLength}
           value={value}
           aria-invalid={isError}
           aria-describedby={id + "-error"}
           onChange={(e) => {
             let sanitizedValue = e.target.value.replace(/[^0-9.]/g, "");
+            if (Number(sanitizedValue) > max) return;
             const parts = sanitizedValue.split(".");
             if (parts.length > 2) {
               sanitizedValue = parts[0] + "." + parts.slice(1).join("");

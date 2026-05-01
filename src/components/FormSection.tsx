@@ -43,6 +43,8 @@ const FormSection = ({
             isError={errors.loanAmount}
             value={inputs.loanAmount}
             onChange={(value) => onChange("loanAmount", value)}
+            maxLength={8}
+            max={99999999}
           />
           <div className="w-full flex flex-col md:flex-row gap-6">
             <InputNumber
@@ -52,6 +54,8 @@ const FormSection = ({
               isError={errors.duration}
               value={inputs.duration}
               onChange={(value) => onChange("duration", value)}
+              maxLength={2}
+              max={100}
             />
             <InputNumber
               unity={"%"}
@@ -60,6 +64,8 @@ const FormSection = ({
               isError={errors.interestRate}
               value={inputs.interestRate}
               onChange={(value) => onChange("interestRate", value)}
+              maxLength={4}
+              max={100}
             />
           </div>
         </fieldset>
