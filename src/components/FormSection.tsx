@@ -91,11 +91,9 @@ const FormSection = ({
             isSelected={inputs.loanType === "interestOnly"}
             onChange={(value) => onChange("loanType", value)}
           />
-          {errors.loanType && (
-            <p id="errorRadio" className="text-preset-5 text-red">
-              This field is required
-            </p>
-          )}
+          <p id="errorRadio" className="text-preset-5 text-red">
+            {errors.loanType ? "This field is required" : ""}
+          </p>
         </fieldset>
         <button
           type="submit"
