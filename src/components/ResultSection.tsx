@@ -11,7 +11,7 @@ const ResultSection = ({ result }: ResultSectionProps) => {
   return (
     <section
       aria-live="polite"
-      className="px-6 py-8 bg-slate-900  md:rounded-b-lg md:p-10 xl:rounded-tl-auto xl:rounded-bl-[5rem] xl:rounded-r-2xl flex items-center justify-center flex-1 min-w-0"
+      className="px-6 py-8 bg-slate-900  md:rounded-b-lg md:p-10 xl:rounded-tl-0 xl:rounded-bl-[5rem] xl:rounded-r-2xl flex items-center justify-center flex-1 min-w-0"
     >
       {result === null ? (
         <article className="flex flex-col items-center justify-center  gap-4 w-full">
