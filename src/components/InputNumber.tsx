@@ -56,6 +56,8 @@ const InputNumber = ({
           id={unity}
           maxLength={maxLength}
           value={value}
+          inputMode="numeric"
+          pattern="[0-9]*"
           aria-invalid={isError}
           aria-describedby={id + "-error"}
           onFocus={() => setIsFocus(true)}
