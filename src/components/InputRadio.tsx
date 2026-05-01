@@ -16,7 +16,7 @@ const InputRadio = ({
   return (
     <label
       className={cn(
-        "flex items-center gap-4 px-3 py-3 border border-slate-500 rounded-sm cursor-pointer hover:border-lime transition has-focus-visible:bg-lime/15",
+        "flex items-center gap-4 px-3 py-3 border border-slate-500 rounded-sm cursor-pointer hover:border-lime transition relative has-focus-visible:bg-lime/15",
         isSelected && "bg-lime/15",
       )}
     >
@@ -32,7 +32,7 @@ const InputRadio = ({
       />
       <div
         className="w-5 h-5 rounded-full border border-slate-700 flex items-center justify-center
-                peer-checked:border-lime peer-focus-visible:border-lime  transition relative z-10"
+                peer-checked:border-lime peer-focus-visible:border-lime  transition  z-10"
       />
       <div className="w-3 h-3 rounded-full bg-lime scale-0 peer-checked:scale-100 peer-checked:bg-lime peer-focus-visible:bg-lime focus-visible:bg-lime transition z-20 absolute ml-1" />
       <span className="text-preset-3 text-slate-900">{label}</span>
