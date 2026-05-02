@@ -52,7 +52,7 @@ function App() {
   };
 
   return (
-    <main className="flex flex-col bg-white xl:flex-row md:rounded-[1.25rem] w-full max-w-252">
+    <main className="flex w-full max-w-252 flex-col bg-white md:rounded-[1.25rem] xl:flex-row">
       <FormSection
         inputs={inputs}
         errors={errors}

@@ -29,22 +29,22 @@ const InputNumber = ({
   const shouldShowHint = max !== undefined && isFocus && !isError;
 
   return (
-    <div className="flex flex-col gap-3 w-full flex-1 min-w-0">
+    <div className="flex w-full min-w-0 flex-1 flex-col gap-3">
       <label className="text-preset-4 text-slate-700" htmlFor={id}>
         {label}
       </label>
       <div
         className={cn(
-          "group flex border border-slate-500 relative  hover:not-focus-within:border-slate-900 rounded-sm hover:cursor-pointer focus-within:border-lime transition-colors duration-200",
+          "group focus-within:border-lime relative flex rounded-sm border border-slate-500 transition-colors duration-200 hover:cursor-pointer hover:not-focus-within:border-slate-900",
           isRight ? "flex-row-reverse justify-between" : "justify-start",
           { "border-red": isError },
         )}
       >
         <span
           className={cn(
-            "px-4 py-3 text-preset-3 text-slate-700 bg-slate-100 group-focus-within:bg-lime transition-colors duration-200",
+            "text-preset-3 group-focus-within:bg-lime bg-slate-100 px-4 py-3 text-slate-700 transition-colors duration-200",
             {
-              " text-preset-3-error bg-red": isError,
+              "text-preset-3-error bg-red": isError,
             },
             isRight ? "rounded-r-sm" : "rounded-l-sm",
           )}
@@ -52,7 +52,7 @@ const InputNumber = ({
           {unity}
         </span>
         <input
-          className="border-none outline-none bg-transparent text-preset-3 text-slate-900 pl-4 hover:cursor-pointer flex-1 min-w-0 transition-colors duration-200"
+          className="text-preset-3 min-w-0 flex-1 border-none bg-transparent pl-4 text-slate-900 transition-colors duration-200 outline-none hover:cursor-pointer"
           type="text"
           name={name}
           id={id}

@@ -11,18 +11,18 @@ const ResultSection = ({ result }: ResultSectionProps) => {
   return (
     <section
       aria-live="polite"
-      className="px-6 py-8 bg-slate-900  md:rounded-b-lg md:p-10 xl:rounded-tl-0 xl:rounded-bl-[5rem] xl:rounded-r-2xl flex items-center justify-center flex-1 min-w-0"
+      className="xl:rounded-tl-0 flex min-w-0 flex-1 items-center justify-center bg-slate-900 px-6 py-8 md:rounded-b-lg md:p-10 xl:rounded-r-2xl xl:rounded-bl-[5rem]"
     >
       {result === null ? (
-        <article className="flex flex-col items-center justify-center  gap-4 w-full">
-          <div className="w-48  h-48 ">
+        <article className="flex w-full flex-col items-center justify-center gap-4">
+          <div className="h-48 w-48">
             <img
               className="aspect-square object-cover"
               src="/assets/images/illustration-empty.svg"
               alt=""
             />
           </div>
-          <h2 className="text-white text-preset-2 text-center">
+          <h2 className="text-preset-2 text-center text-white">
             Result shown here
           </h2>
           <p className="text-preset-4 text-slate-300 xl:text-center">
@@ -31,7 +31,7 @@ const ResultSection = ({ result }: ResultSectionProps) => {
           </p>
         </article>
       ) : (
-        <article className="flex flex-col items-start gap-6 w-full">
+        <article className="flex w-full flex-col items-start gap-6">
           <div className="flex flex-col items-start gap-4">
             <h2 className="text-preset-2 text-white">Your Result</h2>
             <p className="text-preset-4 text-slate-300">
@@ -40,8 +40,8 @@ const ResultSection = ({ result }: ResultSectionProps) => {
               “calculate repayments” again.
             </p>
           </div>
-          <div className="bg-black/25 border-t-2 border-lime rounded-xl py-6 px-4 w-full">
-            <div className="flex flex-col gap-2 pb-4 xl:pb-8 border border-transparent border-b-slate-400/25">
+          <div className="border-lime w-full rounded-xl border-t-2 bg-black/25 px-4 py-6">
+            <div className="flex flex-col gap-2 border border-transparent border-b-slate-400/25 pb-4 xl:pb-8">
               <h3 className="text-preset-4 text-slate-300">
                 Your monthly repayments
               </h3>
@@ -57,7 +57,7 @@ const ResultSection = ({ result }: ResultSectionProps) => {
                 Total you'll repay over the term
               </h4>
               <data
-                className="text-white text-preset-2"
+                className="text-preset-2 text-white"
                 value={result.totalRepayment.toFixed(2)}
               >
                 {formatter.format(result.totalRepayment)}

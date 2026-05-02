@@ -17,24 +17,24 @@ const FormSection = ({
   onClear,
 }: FormSectionProps) => {
   return (
-    <section className="py-8 px-6 flex flex-col gap-6 md:p-10 md:rounded-t-[1.25rem]  xl:rounded-l-[1.25rem] flex-1 min-w-0">
-      <div className="flex flex-col gap-2 justify-start items-start text-left">
+    <section className="flex min-w-0 flex-1 flex-col gap-6 px-6 py-8 md:rounded-t-[1.25rem] md:p-10 xl:rounded-l-[1.25rem]">
+      <div className="flex flex-col items-start justify-start gap-2 text-left">
         <h1 className="text-preset-2 text-slate-900">Mortgage Calculator</h1>
         <button
           onClick={onClear}
-          className="text-preset-4 text-slate-700 hover:cursor-pointer border hover:border-b-slate-900 border-transparent hover:text-slate-900"
+          className="text-preset-4 border border-transparent text-slate-700 hover:cursor-pointer hover:border-b-slate-900 hover:text-slate-900"
         >
           Clear All
         </button>
       </div>
       <form
-        className="w-full flex flex-col gap-6 flex-1 min-w-0"
+        className="flex w-full min-w-0 flex-1 flex-col gap-6"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit();
         }}
       >
-        <fieldset className="flex flex-col gap-6 w-full flex-1 min-w-0">
+        <fieldset className="flex w-full min-w-0 flex-1 flex-col gap-6">
           <legend className="sr-only">Loan details</legend>
           <InputNumber
             unity={"£"}
@@ -47,7 +47,7 @@ const FormSection = ({
             maxLength={8}
           />
 
-          <div className="w-full flex flex-col md:flex-row gap-6">
+          <div className="flex w-full flex-col gap-6 md:flex-row">
             <InputNumber
               unity={"years"}
               name={"duration"}
@@ -74,9 +74,9 @@ const FormSection = ({
         </fieldset>
         <fieldset
           aria-describedby={errors.loanType ? "errorRadio" : undefined}
-          className="flex flex-col gap-3 w-full"
+          className="flex w-full flex-col gap-3"
         >
-          <legend className="text-preset-4 text-slate-700 mb-3">
+          <legend className="text-preset-4 mb-3 text-slate-700">
             Mortgage type
           </legend>
           <InputRadio
@@ -97,10 +97,10 @@ const FormSection = ({
         </fieldset>
         <button
           type="submit"
-          className="bg-lime text-preset-3 text-slate-900 flex items-center justify-center py-4 rounded-full max-w-82 w-full relative after:content-[''] after:absolute after:inset-0 hover:after:bg-white/50 hover:cursor-pointer"
+          className="bg-lime text-preset-3 relative flex w-full max-w-82 items-center justify-center rounded-full py-4 text-slate-900 after:absolute after:inset-0 after:content-[''] hover:cursor-pointer hover:after:bg-white/50"
         >
           <img
-            className="w-4 mr-4 z-20"
+            className="z-20 mr-4 w-4"
             src="../../assets/images/icon-calculator.svg"
             alt=""
           />
